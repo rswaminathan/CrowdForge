@@ -4,6 +4,7 @@ from crowdforge.models import Hit, Result
 
 from django.utils import simplejson as json
 import settings
+#import code
 
 def create_hit(problem, hit_type, params={}):
     """Utility method for creating a new HIT on AMT"""
@@ -20,16 +21,17 @@ def create_hit(problem, hit_type, params={}):
     # remove commas from the keywords if they exist
     keywords=[k.replace(',', '') for k in hit_type.keywords.split()]
     create_hit_rs = conn.create_hit(question=q, lifetime=hit_type.lifetime, max_assignments=hit_type.max_assignments,
-        keywords=keywords, reward=hit_type.payment, duration=hit_type.duration, approval_delay=hit_type.approval_delay, 
+        keywords=keywords, reward=hit_type.payment, duration=hit_type.duration, approval_delay=hit_type.approval_delay,
         title=hit.title, description=hit.description, annotation=`hit_type`)
+    #code.interact(local=locals())
     assert(create_hit_rs.status == True)
 
     # set the new HIT ID to be the hit_id for the new row.
-    hit.hit_id = create_hit_rs.HITId
+    hit.hit_id = create_hit_rs[0].HITId
     hit.save()
 
     return hit
-    
+
 def fetch_results(hit):
     """Poll AMT for new results for the specified HIT"""
     conn = MTurkConnection(aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
@@ -63,7 +65,7 @@ def is_expired(hit):
     result = conn.get_hit(hit.hit_id)[0]
     if hasattr(result, 'Error'):
         print "Something went wrong! %s is an invalid HIT" % str(hit)
-        return True 
+        return True
     assignments = conn.get_assignments(hit.hit_id)
 
     if result.expired:
@@ -81,7 +83,7 @@ def is_complete(hit):
     result = conn.get_hit(hit.hit_id)[0]
     if hasattr(result, 'Error'):
         print "Something went wrong! %s is an invalid HIT" % str(hit)
-        return True 
+        return True
     assignments = conn.get_assignments(hit.hit_id)
 
     if int(result.MaxAssignments) == len(assignments):

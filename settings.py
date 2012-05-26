@@ -4,20 +4,20 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Boris Smus', 'boris@borismus.com'),
+    ('Rahul', 'rahul@swaminathan.com'),
 )
 
 # Amazon settings
 
 # TODO: Update these to reflect your own values from
 # https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&action=access-key
-AWS_ACCESS_KEY_ID = 'JIBBERISH'
-AWS_SECRET_ACCESS_KEY = 'Ev73nMoReJiBBerISH'
+AWS_ACCESS_KEY_ID = 'AKIAIHIV7PLDAZTTWJKQ'
+AWS_SECRET_ACCESS_KEY = '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'
 # TODO: Swap comments on next two lines for production
-AWS_HOST = 'mechanicalturk.sandbox.amazonaws.com'
-# AWS_HOST = 'mechanicalturk.amazonaws.com'
+#AWS_HOST = 'mechanicalturk.sandbox.amazonaws.com'
+AWS_HOST = 'mechanicalturk.amazonaws.com'
 # TODO: Update with your externally accessible URL ROOT
-URL_ROOT = 'http://localhost:8000'
+URL_ROOT = 'http://4jue.localtunnel.com'
 
 MANAGERS = ADMINS
 
@@ -33,7 +33,7 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'America/Los_Angeles'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -81,7 +81,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/boris/Projects/CrowdForge/templates'
+    '/Users/rahul/dev/crowdforge/templates'
 )
 
 INSTALLED_APPS = (
